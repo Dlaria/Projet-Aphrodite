@@ -10,4 +10,9 @@ function enqueue_parent_styles() {
 //    add_editor_style('style.css');
 // }
 // add_action('after_setup_theme', 'setup_style');
+
+function include_carrousel_js_file() {
+   wp_enqueue_script('carrousel_js', '../wp-content/themes/astra-child/js/ac_script.js', array('jquery'), false, true);
+}
+add_action('wp_enqueue_scripts', 'include_carrousel_js_file');
 ?>
