@@ -1,0 +1,19 @@
+/* 
+Theme Name: Astra Child 
+Description: Astra Child 
+Theme Author: Your Name
+Author URI: http://localhost/Projet-Aphrodite/
+Template: astra 
+Version: 1.0.0
+Text Domain: astra-child
+*/
+
+.title-meddon{
+    font-family:'Meddon';
+    margin:1em;
+    text-align: center;
+}
+
+.ast-container{
+    display: block!important;
+}
