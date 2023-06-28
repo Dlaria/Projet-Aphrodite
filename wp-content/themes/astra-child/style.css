@@ -61,12 +61,14 @@ img.arrow-left{
     height: 10px;
     width: 10px;
     margin: 0 2px;
-    background-color: #999999;
+    background-color: #FEC6D3;
     border-radius: 50%;
     display: inline-block;
     transition: background-color 0.6s ease;
 }
-.active, .dot:hover { background-color: #F6B4C2; }
+.active, .dot:hover { 
+    background-color:#FEA1B6;
+ }
 .fade {
     animation-name: fade;
     animation-duration: 1s;
@@ -74,4 +76,42 @@ img.arrow-left{
 @keyframes fade {
     from {opacity: 0}
     to {opacity: 1}
+}
+
+a.affiche-produit{
+    text-transform: uppercase;
+}
+
+div#list-product{
+    display:flex;
+    flex-flow:row nowrap;
+}
+div.divProduct{
+    margin:10px;
+}
+img.imgProduct{
+    width:340px;
+}
+
+img.etiqNew{
+    position:relative;
+    bottom:280px;
+}
+a.etiqFav{
+    position:relative;
+    bottom:280px;
+    left:150px;
+}
+
+.legendProduct p{
+    margin:0!important;
+    padding:0!important;
+    display:inline-block;
+    width:50%;
+}
+p.priceProduct{
+    text-align:right;
+}
+p.priceProduct::after{
+    content:'€';
 }
