@@ -179,7 +179,7 @@ function custom_data_add_product() {
         $price = sanitize_text_field($_POST['price']);
         $status_actif = 1;
 
-        $wpdb->insert($table_name, compact('image_product', 'name', 'description', 'price', "status_actif"));
+        // $wpdb->insert($table_name, compact('image_product', 'name', 'description', 'price', "status_actif"));
         $product_id = $wpdb->insert_id;
         foreach($cd_category as $cd_value){
             if ($cd_value->parent != '0'){
@@ -187,13 +187,16 @@ function custom_data_add_product() {
                     $term_id = $cd_value->term_id;
                     $value = $_POST[$cd_value->term_id];
                     $status = 1;
-                    
-
-                    $wpdb->insert('wp_product_cat', compact('term_id', 'value', 'product_id', 'status'));
                 }
-            }}
-        echo '<div class="notice notice-success is-dismissible"><p>Custom data added successfully!</p></div>';
-        echo '<script>window.location.href="' . admin_url('admin.php?page=manageproduct') . '";</script>';
+            }elseif ($cd_value->name != "Non classé"){
+                // Trouver le moyen de mettre en base le nom de la categorie parent 
+                    // var_dump($cd_value);
+                    // $cat_parent_name = ?
+                }
+                // $wpdb->insert('wp_product_cat', compact('term_id', 'value', 'product_id', 'status'));
+        }
+        // echo '<div class="notice notice-success is-dismissible"><p>Custom data added successfully!</p></div>';
+        // echo '<script>window.location.href="' . admin_url('admin.php?page=manageproduct') . '";</script>';
     }
 }
 
