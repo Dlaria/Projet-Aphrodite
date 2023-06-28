@@ -80,6 +80,7 @@ img.arrow-left{
 
 a.affiche-produit{
     text-transform: uppercase;
+    cursor:pointer;
 }
 
 div#list-product{

@@ -25,12 +25,11 @@ function showSlides(n) {
     dots[slideIndex-1].className += " active";
 }
 
-// En attente
-// var init = () => {
-//     afficheProduit();
-// }
+var init = () => {
+    afficheProduit();
+}
 
-// window.addEventListener("load", init);
+window.addEventListener("load", init);
 
 // Affichage et récupération des produits en base
 let afficheProduit = async (text) => {
@@ -90,22 +89,14 @@ let afficheProduit = async (text) => {
                         if (document.getElementById(divProduct.id)){
                             let removeProduct = document.getElementById('divProduct' + j)
                             removeProduct.remove();
-                            listProduct.appendChild(divProduct);
-                            divProduct.appendChild(imgProduct);
-                            divProduct.appendChild(legendProduct);
-                            divProduct.appendChild(etiqNew);
-                            divProduct.appendChild(etiqFav);
-                            legendProduct.appendChild(nameProduct);
-                            legendProduct.appendChild(priceProduct);
-                        }else{
-                            listProduct.appendChild(divProduct);
-                            divProduct.appendChild(imgProduct);
-                            divProduct.appendChild(legendProduct);
-                            divProduct.appendChild(etiqNew);
-                            divProduct.appendChild(etiqFav);
-                            legendProduct.appendChild(nameProduct);
-                            legendProduct.appendChild(priceProduct);
                         }
+                        listProduct.appendChild(divProduct);
+                        divProduct.appendChild(imgProduct);
+                        divProduct.appendChild(legendProduct);
+                        divProduct.appendChild(etiqNew);
+                        divProduct.appendChild(etiqFav);
+                        legendProduct.appendChild(nameProduct);
+                        legendProduct.appendChild(priceProduct);
                     }
                 }
             )

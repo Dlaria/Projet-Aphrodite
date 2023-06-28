@@ -11,10 +11,10 @@
    {
       exit("Error: " . $e->getMessage());
    }  
-   if (isset($_GET['nouveautes'])){
+   if (!isset($_GET['petit_prix'])){
       $cd_sql = 'SELECT * FROM wp_product ORDER BY created_at DESC LIMIT 4';
 
-   }elseif (isset($_GET['petit_prix'])){
+   }else{
       $cd_sql = 'SELECT * FROM wp_product ORDER BY price ASC LIMIT 4';
    }
 
