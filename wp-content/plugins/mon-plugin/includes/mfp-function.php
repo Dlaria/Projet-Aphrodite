@@ -177,8 +177,9 @@ function custom_data_add_product() {
         $name = sanitize_text_field($_POST['name']);
         $description = sanitize_textarea_field($_POST['description']);
         $price = sanitize_text_field($_POST['price']);
+        $status_actif = 1;
 
-        $wpdb->insert($table_name, compact('image_product', 'name', 'description', 'price'));
+        $wpdb->insert($table_name, compact('image_product', 'name', 'description', 'price', "status_actif"));
         $product_id = $wpdb->insert_id;
         foreach($cd_category as $cd_value){
             if ($cd_value->parent != '0'){
