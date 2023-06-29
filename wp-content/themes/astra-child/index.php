@@ -35,6 +35,10 @@ if (have_posts()){
             <div id="list-product">
             
             </div>
+            <div class="conteneur-fleche">
+                <a class="" onclick="afficheProduit('nouveautes')"><img class="arrow-left" src="wp-content/plugins/mon-plugin/asset/Sacapuce/icons/ei_arrow-down.svg"></a>
+                <a class="" onclick="afficheProduit('petit_prix')"><img src="wp-content/plugins/mon-plugin/asset/Sacapuce/icons/ei_arrow-down.svg"></a>
+            </div>
 
         </div>
 <?php

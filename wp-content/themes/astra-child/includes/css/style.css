@@ -86,6 +86,9 @@ a.affiche-produit{
 div#list-product{
     display:flex;
     flex-flow:row nowrap;
+    color:#000!important;
+    font-weight:500!important;
+    font-family:'Montserrat'!important;
 }
 div.divProduct{
     margin:10px;
@@ -96,11 +99,11 @@ img.imgProduct{
 
 img.etiqNew{
     position:relative;
-    bottom:280px;
+    bottom:345px;
 }
 a.etiqFav{
     position:relative;
-    bottom:280px;
+    bottom:345px;
     left:150px;
 }
 
@@ -115,4 +118,12 @@ p.priceProduct{
 }
 p.priceProduct::after{
     content:'€';
+}
+
+span.pointure:not(:last-child)::after{
+    content:", ";
+}
+
+div.conteneur-fleche{
+    text-align:right;
 }
