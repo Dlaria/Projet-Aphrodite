@@ -44,10 +44,10 @@ function pp_admin_page(){
                     <th>Actions</th> 
                 </tr>
             </thead>';
-    echo '<tbody><tr>';
+    echo '<tbody>';
     foreach($pp_all_product as $pp_product){
         $pp_product_cat = $wpdb->get_var('SELECT * FROM wp_pp_category WHERE category_id='.$pp_product->category_id,1);
-        echo '<td><img style="width:50px; height:50px;" src="'.$pp_product->image_product.'"></td>
+        echo '<tr><td><img style="width:50px; height:50px;" src="'.$pp_product->image_product.'"></td>
             <td>'.$pp_product->name.'</td>
             <td>'.$pp_product_cat.'</td>
             <td>'.$pp_product->price.'</td>
@@ -55,9 +55,9 @@ function pp_admin_page(){
             <td>'.$pp_product->update_at.'</td>';
             echo '<td>
                     <a href="' . admin_url('admin.php?page=pp-admin-edit&categoryid='.$pp_product->category_id) . '&productid='.$pp_product->product_id.'">Edit</a>
-                </td>';
+                </td></tr>';
     }
-    echo '</tr></tbody>';
+    echo '</tbody>';
 }
 
 
@@ -96,6 +96,7 @@ function pp_admin_add_page(){
         echo '<div class="wrap">';
         echo '<h1 class="wp-heading-inline">Projet plugin</h1>';
         echo '<hr class="wp-header-end">';
+        echo '<a style="position:relative; bottom:30px; left:95%;" class="button button-link-delete" href="'.admin_url('admin.php?page=pp-admin-add').'">Retour</a>';
         
         echo '<form method="post">';
         echo '<input type="hidden" id="src" name="src" required>';
@@ -105,8 +106,8 @@ function pp_admin_add_page(){
             foreach ($pp_cat_order as $pp_value){
                 echo $pp_value->champ;
             }
-            echo '</table>';
-            echo '<p class="submit"><input type="submit" name="add-new" id="add-new" class="button button-primary" value="Add New"></p>';
+        echo '</table>';
+        echo '<p class="submit"><input type="submit" name="add-new" id="add-new" class="button button-primary" value="Add New"></p>';
         echo '</form>';
 
         if (isset($_POST['add-new'])){
@@ -138,7 +139,7 @@ function pp_admin_add_page(){
                 }
             }
 
-            echo '<script>window.location.href="' . admin_url('admin.php?page=pp-admin-add') . '";</script>';
+            echo '<script>window.location.href="' . admin_url('admin.php?page=projetplugin') . '";</script>';
         }
     }
 }
@@ -210,7 +211,7 @@ function pp_admin_edit_page(){
                     // var_dump($pp_post_key);
                     // var_dump($pp_post_value);
 
-                    if ($pp_query != null){
+                    if ($pp_query != null && $pp_query == $pp_post_value){
                         $wpdb->update('wp_pp_product_cat', compact('status'), array('product_id' => $product_id, 'value' => $pp_query));
                     }else{
                         $wpdb->insert('wp_pp_product_cat', compact('term_id', 'value', 'product_id', 'status'));
@@ -218,7 +219,7 @@ function pp_admin_edit_page(){
                 }
             }
             foreach ($pp_product_cat as $pp_cat){
-                if (!isset($_POST[$pp_cat->term_id])){
+                if ($_POST[$pp_cat->term_id] !== $pp_cat->value){
                     $status = 0;
                     $wpdb->update('wp_pp_product_cat', compact('status'), array('product_id' => $product_id, 'value' => $pp_cat->value));
                 }
@@ -253,5 +254,6 @@ add_action('wp_enqueue_media', 'pp_include_media_button_js_file');
 
 function pp_check_checked(){
     wp_enqueue_script('pp_check', '../wp-content/plugins/projet-plugin/includes/js/pp-check.js');
+
 }
 add_action('wp_enqueue_script', 'pp_check_checked');
