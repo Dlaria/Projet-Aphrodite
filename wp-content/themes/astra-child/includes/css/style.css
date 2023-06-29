@@ -127,3 +127,9 @@ span.pointure:not(:last-child)::after{
 div.conteneur-fleche{
     text-align:right;
 }
+
+form.newsletter{
+    text-align: center;
+    background: #fff url('../../../../plugins/mon-plugin/asset/Sacapuce/decor1') no-repeat;
+    background-size:80%;
+}

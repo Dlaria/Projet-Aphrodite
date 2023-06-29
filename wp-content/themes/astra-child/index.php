@@ -39,8 +39,13 @@ if (have_posts()){
                 <a class="" onclick="afficheProduit('nouveautes')"><img class="arrow-left" src="wp-content/plugins/mon-plugin/asset/Sacapuce/icons/ei_arrow-down.svg"></a>
                 <a class="" onclick="afficheProduit('petit_prix')"><img src="wp-content/plugins/mon-plugin/asset/Sacapuce/icons/ei_arrow-down.svg"></a>
             </div>
-
         </div>
+        <form method="post" class="newsletter">
+            <p class="newsletter"><strong>10€ Offert*</strong><br>En vous abonnant a notre Newsletter</p>
+            <input type="email" name="email" id="email">
+            <input type="submit" value="Envoyer">
+            <a href="#"><small>*voir les condition de l'offre</small></a>
+        </form>
 <?php
 }
 
