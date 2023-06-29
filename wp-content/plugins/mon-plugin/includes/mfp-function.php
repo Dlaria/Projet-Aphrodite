@@ -157,10 +157,8 @@ function custom_data_add_product() {
             foreach($cd_category as $cd_value){
                 echo '<tr>';
                 if ($cd_value->parent == '0' && $cd_value->name != "Non classé"){
-                    $cat_parent_name = $cd_value->name;
-                    $cat_parent_id = $cd_value->term_id;
-                        echo '<th>'.$cat_parent_name.'</th>';
-            }
+                        echo '<th>'.$cd_value->name.'</th>';
+                }
                 // var_dump($cd_category);
                 if ($cd_value->parent != '0'){
                      echo '<td><label for="'.$cd_value->name.'">'.$cd_value->name.'</label>&nbsp;<input type="checkbox" name="'.$cd_value->term_id.'" value="'.$cd_value->name.'"></td>';
@@ -172,31 +170,32 @@ function custom_data_add_product() {
     echo '</form>';
 
     if (isset($_POST['submit'])){
-        // var_dump($_POST);
+        var_dump($_POST);
         $image_product = $_POST['src'];
         $name = sanitize_text_field($_POST['name']);
         $description = sanitize_textarea_field($_POST['description']);
         $price = sanitize_text_field($_POST['price']);
         $status_actif = 1;
 
-        // $wpdb->insert($table_name, compact('image_product', 'name', 'description', 'price', "status_actif"));
+        $wpdb->insert($table_name, compact('image_product', 'name', 'description', 'price', "status_actif"));
         $product_id = $wpdb->insert_id;
         foreach($cd_category as $cd_value){
             if ($cd_value->parent != '0'){
                 if (isset($_POST[$cd_value->term_id])){
+                    // var_dump($cd_value);
                     $term_id = $cd_value->term_id;
                     $value = $_POST[$cd_value->term_id];
                     $status = 1;
+
+                    $cat_parent_name = $wpdb->get_var('SELECT * FROM wp_terms WHERE term_id ='.$cd_value->parent, 1);
+
+                    // var_dump($cat_parent_name);
+                    $wpdb->insert('wp_product_cat', compact('cat_parent_name','term_id', 'value', 'product_id', 'status'));
                 }
-            }elseif ($cd_value->name != "Non classé"){
-                // Trouver le moyen de mettre en base le nom de la categorie parent 
-                    // var_dump($cd_value);
-                    // $cat_parent_name = ?
-                }
-                // $wpdb->insert('wp_product_cat', compact('term_id', 'value', 'product_id', 'status'));
+            }
         }
-        // echo '<div class="notice notice-success is-dismissible"><p>Custom data added successfully!</p></div>';
-        // echo '<script>window.location.href="' . admin_url('admin.php?page=manageproduct') . '";</script>';
+        echo '<div class="notice notice-success is-dismissible"><p>Custom data added successfully!</p></div>';
+        echo '<script>window.location.href="' . admin_url('admin.php?page=manageproduct') . '";</script>';
     }
 }
 
@@ -297,11 +296,13 @@ function custom_data_edit_page() {
                     $cd_query = $wpdb->get_var('SELECT * FROM wp_product_cat WHERE product_id ='.$productId.' AND term_id ='.$term_id,2);
                     // var_dump($cd_query);
 
+                    $cat_parent_name = $wpdb->get_var('SELECT * FROM wp_terms WHERE term_id ='.$cd_value->parent, 1);
+
                     if ($cd_query != null){
                         $wpdb->update('wp_product_cat', compact('status'), array('product_id' => $productId, 'value' => $cd_query));
                     }else{
                         $product_id = $productId;
-                        $wpdb->insert('wp_product_cat', compact('term_id', 'value', 'product_id', 'status'));
+                        $wpdb->insert('wp_product_cat', compact('cat_parent_name','term_id', 'value', 'product_id', 'status'));
                     }
                 }else{
                     $cd_query = $wpdb->get_var('SELECT * FROM wp_product_cat WHERE product_id ='.$productId.' AND term_id ='.$cd_value->term_id,2);
