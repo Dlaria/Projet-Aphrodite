@@ -23,8 +23,6 @@ if (have_posts()){
             <div class="custom-slider fade">
                 <img class="slide-img" src="wp-content/plugins/mon-plugin/asset/Sacapuce/promotion2.png">
             </div>
-            <a class="prev" onclick="plusSlides(-1)"><img class="arrow-left" src="wp-content/plugins/mon-plugin/asset/Sacapuce/icons/ei_arrow-down.svg"></a>
-            <a class="next" onclick="plusSlides(1)"><img src="wp-content/plugins/mon-plugin/asset/Sacapuce/icons/ei_arrow-down.svg"></a>
         </div>
         <br>
         <div class="slide-dot">

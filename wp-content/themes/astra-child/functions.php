@@ -4,12 +4,6 @@ function enqueue_parent_styles() {
    wp_enqueue_style( 'parent-style', 'http://localhost/Projet-Aphrodite/wp-content/themes/astra-child/style.css' );
 }
 
-// function setup_style()
-// {
-//    add_theme_support('wp-block-styles');
-//    add_editor_style('style.css');
-// }
-// add_action('after_setup_theme', 'setup_style');
 
 function include_carrousel_js_file() {
    wp_enqueue_script('carrousel_js', '../wp-content/themes/astra-child/js/ac_script.js', array('jquery'), false, true);

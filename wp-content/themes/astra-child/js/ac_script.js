@@ -1,6 +1,7 @@
 var slideIndex = 1;
 showSlides(slideIndex);
 
+setInterval(plusSlides, 7000, 1)
 function plusSlides(n) {
     showSlides(slideIndex += n);
 }
@@ -72,9 +73,9 @@ let afficheProduit = async (text) => {
                             idFav = "nonfavori";
                         }
 
-                        let divProduct = createBlock('div',"","divProduct"),
+                        let divProduct = createBlock('div', "", "divProduct"),
                         legendProduct = createBlock('div', '', 'legendProduct'),
-                        imgProduct = createBlock('img',"","imgProduct"),
+                        imgProduct = createBlock('img', "", "imgProduct"),
                         etiqNew = createBlock('img', "", "etiqNew"),
                         etiqFav = createBlock('a', '<img src="'+ imgFav +'">', "etiqFav");
                         nameProduct = createBlock('p', products[j].name, "nameProduct");
