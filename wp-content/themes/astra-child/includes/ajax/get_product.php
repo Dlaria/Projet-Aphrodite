@@ -12,10 +12,10 @@
       exit("Error: " . $e->getMessage());
    }  
    if (!isset($_GET['petit_prix'])){
-      $cd_sql = 'SELECT * FROM wp_product ORDER BY created_at DESC LIMIT 4';
+      $cd_sql = 'SELECT * FROM wp_product ORDER BY created_at DESC';
 
    }else{
-      $cd_sql = 'SELECT * FROM wp_product ORDER BY price ASC LIMIT 4';
+      $cd_sql = 'SELECT * FROM wp_product ORDER BY price ASC';
    }
 
       $cd_query = $cd_dbh->prepare($cd_sql);
