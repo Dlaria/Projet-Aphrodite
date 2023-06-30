@@ -29,7 +29,7 @@ if (have_posts()){
             <span class="dot" onclick="currentSlide(1)"></span>
             <span class="dot" onclick="currentSlide(2)"></span>
         </div>
-        <div>
+        <div class="conteneur-produit">
             <a class="affiche-produit" id="nouveautes" onclick="afficheProduit(this.id)">nouveautes</a>
             <a class="affiche-produit" id="petit_prix" onclick="afficheProduit(this.id)">petit prix</a>
             <div id="list-product">
@@ -42,10 +42,16 @@ if (have_posts()){
         </div>
         <form method="post" class="newsletter">
             <p class="newsletter"><strong>10€ Offert*</strong><br>En vous abonnant a notre Newsletter</p>
-            <input type="email" name="email" id="email">
-            <input type="submit" value="Envoyer">
-            <a href="#"><small>*voir les condition de l'offre</small></a>
+            <input type="email" name="email" id="email" placeholder="Entrez votre mail">
+            <input class="btn-newsletter" type="submit" value="Envoyer">
+            <a href="#" class="condition"><small>*voir les condition de <br> l'offre</small></a>
         </form>
+        <div class="paiment">
+            <img src="wp-content/plugins/mon-plugin/asset/Sacapuce/masterc" alt="master-card">
+            <img src="wp-content/plugins/mon-plugin/asset/Sacapuce/visa" alt="visa">
+            <img src="wp-content/plugins/mon-plugin/asset/Sacapuce/cb" alt="carte-bleu">
+            <img src="wp-content/plugins/mon-plugin/asset/Sacapuce/paypalimg" alt="paypal">
+        </div>
 <?php
 }
 
