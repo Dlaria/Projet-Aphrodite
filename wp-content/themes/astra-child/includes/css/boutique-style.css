@@ -1,0 +1,10 @@
+
+.ast-container{
+    display: block!important;
+}
+
+div.bandeau{
+    max-width:1200px;
+    position:absolute;
+    left:0;
+}

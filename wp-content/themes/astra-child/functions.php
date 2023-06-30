@@ -1,13 +1,20 @@
 <?php
 add_action( 'wp_enqueue_scripts', 'enqueue_parent_styles' );
 function enqueue_parent_styles() {
-   wp_enqueue_style( 'parent-style', 'http://localhost/Projet-Aphrodite/wp-content/themes/astra-child/style.css' );
+   if (isset($_GET['page_id']) && $_GET['page_id'] == 127){
+      wp_enqueue_style( 'parent-style', 'http://localhost/Projet-Aphrodite/wp-content/themes/astra-child/includes/css/boutique-style.css' );
+   }else{
+      wp_enqueue_style( 'parent-style', 'http://localhost/Projet-Aphrodite/wp-content/themes/astra-child/style.css' );
+   }
 }
 
 
 function include_carrousel_js_file() {
-   wp_enqueue_script('carrousel_js', '../wp-content/themes/astra-child/includes/js/ac_carrousel_script.js', array('jquery'), false, true);
-   wp_enqueue_script('produit_js', '../wp-content/themes/astra-child/includes/js/ac_produit_script.js', array('jquery'), false, true);
+   if (isset($_GET['page_id']) && $_GET['page_id'] == 127){
+      wp_enqueue_script('boutique_js', '../wp-content/themes/astra-child/includes/js/ac_boutique_script.js', array('jquery'), false, true);
+   }else{
+      wp_enqueue_script('acceuil_js', '../wp-content/themes/astra-child/includes/js/ac_acceuil_script.js', array('jquery'), false, true);
+   }
 }
 add_action('wp_enqueue_scripts', 'include_carrousel_js_file');
 
