@@ -1,7 +1,7 @@
 <?php
 add_action( 'wp_enqueue_scripts', 'enqueue_parent_styles' );
 function enqueue_parent_styles() {
-   wp_enqueue_style( 'parent-style', 'http://localhost/Projet-Aphrodite/wp-content/themes/astra-child/includes/css/style.css' );
+   wp_enqueue_style( 'parent-style', 'http://localhost/Projet-Aphrodite/wp-content/themes/astra-child/style.css' );
 }
 
 
