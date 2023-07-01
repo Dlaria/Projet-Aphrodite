@@ -4,7 +4,79 @@
 }
 
 div.bandeau{
+    width:1200px;
+    height:306px;
+}
+
+div.bandeau img{
     max-width:1200px;
     position:absolute;
     left:0;
+}
+
+section#principal{
+    display:flex;
+}
+
+div#list-product{
+    display:flex;
+    flex-flow:row wrap;
+    color:#000!important;
+    font-weight:500!important;
+    font-family:'Montserrat'!important;
+}
+div.divProduct{
+    margin:10px;
+}
+img.imgProduct{
+    width:300px;
+}
+
+img.etiqNew{
+    position:relative;
+    bottom:355px;
+}
+a.etiqFav{
+    cursor:pointer;
+    position:relative;
+    bottom:355px;
+    left:160px;
+}
+
+.legendProduct p{
+    margin:0!important;
+    padding:0!important;
+    display:inline-block;
+    width:50%;
+}
+p.priceProduct{
+    text-align:right;
+}
+p.priceProduct::after{
+    content:'€';
+}
+
+span.pointure:not(:last-child)::after{
+    content:", ";
+}
+
+div.conteneur-fleche{
+    text-align:right;
+}
+
+div#couleur{
+    display:flex;
+    flex-flow:row wrap;
+}
+
+span.couleur{
+    display:block;
+    border-radius:100%;
+    width:40px;
+    height:40px;
+}
+
+span.couleur:hover{
+    border:4px solid #600B0B;
+    cursor:pointer;
 }

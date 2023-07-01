@@ -1,8 +1,15 @@
 var init = () => {
     afficheProduit();
+    spanCouleur();
 }
 
 window.addEventListener("load", init);
+
+let selectCat = document.getElementById('select-cat');
+
+selectCat.addEventListener('change', () => {
+    afficheProduit(selectCat.value);
+})
 
 // Affichage et récupération des produits en base
 let afficheProduit = async (text) => {
@@ -126,4 +133,11 @@ let change_fav = (eventFav, product_id, imgFav) => {
         }
     })
 
+}
+
+let spanCouleur = () => {
+    let couleurs = document.getElementsByClassName('couleur');
+    for(let i=0;i<couleurs.length;i++){
+        couleurs[i].style.backgroundColor = couleurs[i].id;
+    }
 }
