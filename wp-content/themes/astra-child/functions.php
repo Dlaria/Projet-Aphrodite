@@ -25,4 +25,10 @@ function get_product(){
    return $cd_result;
 }
 
+function get_all_cat(){
+   global $wpdb;
+   $cd_result = $wpdb->get_results('SELECT * FROM wp_term_taxonomy INNER JOIN wp_terms ON wp_term_taxonomy.term_id = wp_terms.term_id WHERE taxonomy = "category"');
+   return $cd_result;
+}
+
 ?>
