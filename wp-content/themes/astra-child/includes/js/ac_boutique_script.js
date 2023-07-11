@@ -8,101 +8,96 @@ window.addEventListener("load", init);
 let selectCat = document.getElementById('select-cat');
 
 selectCat.addEventListener('change', () => {
+    let titre = document.getElementById('this-cat');
+    titre.innerHTML = selectCat.value;
     afficheProduit(selectCat.value);
 })
 
 // Affichage et récupération des produits en base
 let afficheProduit = async (text) => {
     // console.log(text);
-            await fetch("/Projet-Aphrodite/wp-content/themes/astra-child/includes/ajax/get_product.php?"+text)
-            .then((resp) => resp.json())
-            .then((data) =>{
-                // console.log(data);
-                let listProduct = document.getElementById('list-product'),
-                products = data[0],
-                categorys = data[1];
-                // console.log(categorys);
-                for(let j=0;j<products.length;j++){
-                    // console.log(products[j]);
+    let getProductUrl = "/Projet-Aphrodite/wp-content/themes/astra-child/includes/ajax/get_product.php?"+text;
 
-                    let imgNew = '',
-                    imgFav = '',
-                    classFav = '';
+    await fetch(getProductUrl)
+    .then((resp) => resp.json())
+    .then((data) =>{
+        // console.log(data);
+        let listProduct = document.getElementById('list-product'),
+        products = data[0],
+        categorys = data[1];
+        // console.log(categorys);
+        for(let j=0;j<products.length;j++){
+            // console.log(products[j]);
 
-                    if (products[j].status_new == "New"){
-                        imgNew = 'http://localhost/Projet-Aphrodite/wp-content/plugins/mon-plugin/asset/Sacapuce/NEW-etiquette';
-                    }else{
-                        imgNew = '';
-                    }
+            let imgNew = '',
+            imgFav = '',
+            classFav = '';
 
-                    if (products[j].status_fav == "1"){
-                        imgFav = 'http://localhost/Projet-Aphrodite/wp-content/plugins/mon-plugin/asset/Sacapuce/icons/like';
-                        classFav = " favori";
-                    }else{
-                        imgFav = 'http://localhost/Projet-Aphrodite/wp-content/plugins/mon-plugin/asset/Sacapuce/icons/unlike';
-                        classFav = " nonfavori";
-                    }
+            if (products[j].status_new == "New"){
+                imgNew = 'http://localhost/Projet-Aphrodite/wp-content/plugins/mon-plugin/asset/Sacapuce/NEW-etiquette';
+            }else{
+                imgNew = '';
+            }
 
-                    let divProduct = createBlock('div', "", "divProduct"),
-                    legendProduct = createBlock('div', '', 'legendProduct'),
-                    imgProduct = createBlock('img', "", "imgProduct"),
-                    etiqNew = createBlock('img', "", "etiqNew"),
-                    etiqFav = createBlock('a', '<img id="imgFav'+j+'" src="'+ imgFav +'">', "etiqFav" + classFav);
-                    nameProduct = createBlock('p', products[j].name, "nameProduct");
-                    priceProduct = createBlock('p', products[j].price, "priceProduct"),
-                    pointures = createBlock('div', '', "pointures");
+            if (products[j].status_fav == "1"){
+                imgFav = 'http://localhost/Projet-Aphrodite/wp-content/plugins/mon-plugin/asset/Sacapuce/icons/like';
+                classFav = " favori";
+            }else{
+                imgFav = 'http://localhost/Projet-Aphrodite/wp-content/plugins/mon-plugin/asset/Sacapuce/icons/unlike';
+                classFav = " nonfavori";
+            }
 
-                    divProduct.id = 'divProduct' + j;
-                    imgProduct.src = products[j].image_product;
-                    etiqNew.src = imgNew;
-                    etiqFav.id = "etiqFav" + j;
+            let divProduct = createBlock('div', "", "divProduct"),
+            legendProduct = createBlock('div', '', 'legendProduct'),
+            imgProduct = createBlock('img', "", "imgProduct"),
+            etiqNew = createBlock('img', "", "etiqNew"),
+            etiqFav = createBlock('a', '<img id="imgFav'+j+'" src="'+ imgFav +'">', "etiqFav" + classFav);
+            nameProduct = createBlock('p', products[j].name, "nameProduct");
+            priceProduct = createBlock('p', products[j].price, "priceProduct"),
+            pointures = createBlock('div', '', "pointures");
 
-                    for(let i=0;i<categorys.length;i++){
-                        if (products[j].id == categorys[i].product_id){
-                            if (categorys[i].status == 1){
-                                if (categorys[i].cat_parent_name == "Pointure"){
-                                    // console.log(categorys[i]);
-                                    let pointure = createBlock('span', categorys[i].value, "pointure");
-                                    pointures.appendChild(pointure);
-                                    
-                                }
-                            }
+            divProduct.id = 'divProduct' + j;
+            imgProduct.src = products[j].image_product;
+            etiqNew.src = imgNew;
+            etiqFav.id = "etiqFav" + j;
+
+            for(let i=0;i<categorys.length;i++){
+                if (products[j].id == categorys[i].product_id){
+                    if (categorys[i].status == 1){
+                        if (categorys[i].cat_parent_name == "Pointure"){
+                            // console.log(categorys[i]);
+                            let pointure = createBlock('span', categorys[i].value, "pointure");
+                            pointures.appendChild(pointure);
+                            
                         }
                     }
-                    // console.log(pointures);
-
-                    if (document.getElementById(divProduct.id)){
-                        let removeProduct = document.getElementById('divProduct' + j)
-                        removeProduct.remove();
-                    }
-                    listProduct.appendChild(divProduct);
-                    divProduct.appendChild(imgProduct);
-                    divProduct.appendChild(legendProduct);
-                    divProduct.appendChild(pointures);
-                    divProduct.appendChild(etiqNew);
-                    divProduct.appendChild(etiqFav);
-                    legendProduct.appendChild(nameProduct);
-                    legendProduct.appendChild(priceProduct);
-
-                    if (document.getElementById(etiqFav.id)){
-                        let eventFav = document.getElementById('etiqFav' + j);
-                        let imgFav = document.getElementById('imgFav' + j);
-
-                        eventFav.addEventListener('click', () => {change_fav(eventFav, products[j].id, imgFav)})
-                    }
-                    
                 }
-                }
-            )
-}
+            }
+            // console.log(pointures);
 
-var createBlock = function (tag, content, cssClass) {
-	var element = document.createElement(tag);
-	if (cssClass != undefined) {
-		element.className =  cssClass;
-	}
-	element.innerHTML = content;
-	return element;
+            if (document.getElementById(divProduct.id)){
+                let removeProduct = document.getElementById('divProduct' + j)
+                removeProduct.remove();
+            }
+            listProduct.appendChild(divProduct);
+            divProduct.appendChild(imgProduct);
+            divProduct.appendChild(legendProduct);
+            divProduct.appendChild(pointures);
+            divProduct.appendChild(etiqNew);
+            divProduct.appendChild(etiqFav);
+            legendProduct.appendChild(nameProduct);
+            legendProduct.appendChild(priceProduct);
+
+            if (document.getElementById(etiqFav.id)){
+                let eventFav = document.getElementById('etiqFav' + j);
+                let imgFav = document.getElementById('imgFav' + j);
+
+                eventFav.addEventListener('click', () => {change_fav(eventFav, products[j].id, imgFav)})
+            }
+            
+        }
+        }
+    )
 }
 
 // non fonctionnel
@@ -140,4 +135,15 @@ let spanCouleur = () => {
     for(let i=0;i<couleurs.length;i++){
         couleurs[i].style.backgroundColor = couleurs[i].id;
     }
+}
+
+
+
+var createBlock = function (tag, content, cssClass) {
+	var element = document.createElement(tag);
+	if (cssClass != undefined) {
+		element.className =  cssClass;
+	}
+	element.innerHTML = content;
+	return element;
 }

@@ -14,8 +14,25 @@ div.bandeau img{
     left:0;
 }
 
+div#categories{
+    display: flex;
+    justify-content:space-between;
+    margin-bottom:3vw;
+}
+
+h3#this-cat{
+    display:inline-block;
+    margin-left:18vw;
+}
+select#select-cat{
+    padding:0;
+}
+
 section#principal{
     display:flex;
+    color:#000!important;
+    font-weight:400!important;
+    font-family:'Montserrat'!important;
 }
 
 div#list-product{
@@ -56,6 +73,11 @@ p.priceProduct::after{
     content:'€';
 }
 
+h3.titre-filtre{
+    margin-top:2vw;
+    margin-bottom:0.5vw;
+}
+
 span.pointure:not(:last-child)::after{
     content:", ";
 }
@@ -64,19 +86,23 @@ div.conteneur-fleche{
     text-align:right;
 }
 
+a.taille:not(:last-child)::after{
+    content:", ";
+}
+
 div#couleur{
     display:flex;
     flex-flow:row wrap;
 }
 
-span.couleur{
+.couleur{
     display:block;
     border-radius:100%;
     width:40px;
     height:40px;
 }
 
-span.couleur:hover{
+a.couleur:hover{
     border:4px solid #600B0B;
     cursor:pointer;
 }

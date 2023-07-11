@@ -11,7 +11,8 @@
    {
       exit("Error: " . $e->getMessage());
    }  
-   if (!isset($_GET['petit_prix'])){
+   
+   if (!isset($_GET['Petit_prix'])){
       $cd_sql = 'SELECT * FROM wp_product ORDER BY created_at DESC';
 
    }else{
