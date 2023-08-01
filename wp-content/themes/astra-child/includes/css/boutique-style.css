@@ -86,8 +86,20 @@ div.conteneur-fleche{
     text-align:right;
 }
 
-a.taille:not(:last-child)::after{
-    content:", ";
+#list-filter{
+    max-width:200px;
+}
+
+.filtre-flex{
+    display:flex;
+    flex-flow:row wrap;
+}
+
+a.taille{
+    color:#000;
+    border:1px solid black;
+    padding:9px 15px;
+    margin:8px;
 }
 
 div#couleur{

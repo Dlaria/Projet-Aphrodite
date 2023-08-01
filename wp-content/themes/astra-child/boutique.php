@@ -26,7 +26,7 @@ get_header(); ?>
 	<form id="list-filter">
 		<div id="taille">
 			<h3 class="titre-filtre titre-taille">Taille</h3>
-			<div>
+			<div class="filtre-flex">
 				<?php asort($all_cat); foreach($all_cat as $cat_value){
 					if ($cat_value->parent == '18'){
 						echo '<a class="taille" id="'.$cat_value->term_id.'">'.$cat_value->name.'</a>';
